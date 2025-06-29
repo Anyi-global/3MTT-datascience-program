@@ -1,0 +1,101 @@
+3MTT DATA SCIENCE TRAINING
+
+MODULE 3 -
+
+DESCRIPTIVE STATISTICS
+
+#loading libraries
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load sample data
+data = sns.load_dataset('penguins')  # Seaborn's built-in dataset
+
+# Display the first few rows
+data.head()
+
+#finding the sum
+mass_sum = data['body_mass_g'].sum()
+
+#finding the count
+count_masses = len(data['body_mass_g']) #this code counted the missing values as well
+
+average = mass_sum/count_masses
+print(average)
+
+# Calculate mean of numerical columns
+#numeric_only=True --> this calculates the mean on numerical columns alone
+
+mean_values = data.mean(numeric_only=True) #data.mean()
+print("Mean:\n", mean_values)
+
+# Calculate median
+median_values = data.median(numeric_only=True)
+print("Median:\n", median_values)
+
+data['sex'].value_counts()
+
+# Calculate range
+data_range = data.max(numeric_only=True) - data.min(numeric_only=True)
+print("Range:\n", data_range)
+
+# Calculate variance
+variance_values = data.var(numeric_only=True) #data.var()
+print("Variance:\n", variance_values)
+
+# Calculate standard deviation
+std_values = data.std(numeric_only=True) #data.std()
+print("Standard Deviation:\n", std_values)
+
+# Calculate IQR
+
+# Select only numeric columns
+#the numeric_data returns only numerical ccolumns in the dataframe
+numeric_data = data.select_dtypes(include='number')
+
+Q1 = numeric_data.quantile(0.25) #0.25 is the same thing as 25% = 25/100
+Q3 = numeric_data.quantile(0.75)
+IQR = Q3 - Q1
+print("Interquartile Range (IQR):\n", IQR)
+
+##Covariance
+
+import numpy as np
+
+# Example data
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 6, 8, 10]
+
+# Calculate covariance
+covariance = np.cov(x,y)[0,1]  # Extract the covariance value
+print("Covariance:", covariance)
+
+## Pearson Correlation Coefficient
+
+#pearson uses a different library called "scipy"
+from scipy.stats import pearsonr
+
+# Example data
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 6, 8, 10]
+
+# Calculate Pearson correlation
+pearson_corr,_ = pearsonr(x, y)
+print("Pearson Correlation Coefficient:", pearson_corr)
+
+## Spearman Rank Correlation
+
+from scipy.stats import spearmanr
+
+# Example data
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 6, 8, 10]
+
+# Calculate Spearman correlation
+spearman_corr, _ = spearmanr(x, y)
+print("Spearman Correlation Coefficient:", spearman_corr)
+
+grapevinenarah5@gmail.com
