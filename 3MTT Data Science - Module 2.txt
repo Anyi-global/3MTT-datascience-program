@@ -1,0 +1,700 @@
+3MTT DATA SCIENCE PROGRAMME WITH DAREY.IO (https://3mtt.academy.darey.io/)
+
+INTRODUCTION TO DATA SCIENCE TUTORIAL LINK:
+https://colab.research.google.com/drive/1Gq39abpnsVvr0PAooiUIgY4Ao7qO_nP0#scrollTo=-4XrpMghdz29
+
+MODULE 2
+COURSE 1:
+NUMPY
+
+Numpy stands for Numerical Python. It is mostly used for handling multidimensional array in Python.
+
+Numpy array is faster than Python list in execution.
+
+USES OF NUMPY
+1. Arithmetic Operations
+2. Statistical Operations
+3. Bitwise Operators
+4. Copying and Viewing Arrays
+5. Stacking
+6. Matrix Operations
+7. Linear Algebra
+8. Broadcasting
+9. Mathematical Operations
+10. Searching, Sorting, & Counting
+
+
+ADVANCED NUMPY - VECTORIZATION, MASKING, BROADCASTING & MORE
+Youtube Video Link: https://www.youtube.com/watch?v=pQt8yQuPOGo
+
+
+NUMPY VS PANDAS COMPARISON
+A comparison between the Numpy and Pandas Python libraries.
+
+Youtube Video Link: https://www.youtube.com/watch?v=KHoEbRH46Zk
+
+
+
+INTRODUCTION TO PANDAS
+Pandas Data Structure - Series
+Series is a 1D labeled array capable of holding any data type - int, str, float, python objects, e.t.c. The axis label are collectively referred to as an index.
+
+To create a series you can call:
+s = pd.Series(data, index = index)
+
+Where:
+  - Data here can be Python lists, dict, arrays, etc.
+  - Index is unique, hashable and of the same length as the data. By default, it is np.arange(n)
+
+Just like numpy arrays, the series data structure are value-mutable that is, the values they contain can be altered, but not size mutable.
+
+CREATING SERIES USING PYTHON LIST OR DICT
+s = pd.Series([1,2,3,4,5])
+print(s)
+
+0    1
+1    2
+2    3
+3    4
+4    5
+dtype: int64
+
+s = pd.Series(['Xtern', 'abc', '123'])
+s
+
+0    Xtern
+1      abc
+2      123
+dtype: object
+
+s = pd.Series({'a': 1, 'b': 2, 'c': 3})
+s
+
+a    1
+b    2
+c    3
+dtype: int64
+
+Creating series from numpy ndarray
+data = np.array([10, 40, 45, 67, 78])
+
+series = pd.Series(data)
+series
+
+0    10
+1    40
+2    45
+3    67
+4    78
+dtype: int32
+
+data = np.random.randint(10, 50, size = (2,3))
+
+series = pd.Series(data)
+print(series)
+
+We get a value Error because we are trying to insert a 2D array into a 1D data structure in pandas.
+
+Creating Series from Scalar
+index = ['a', 'b', 'c', 'd']
+
+pd.Series(5.5, index = index)
+
+a    5.5
+b    5.5
+c    5.5
+d    5.5
+dtype: float64
+
+Accessing properties/attributes and methods of Series
+
+data = np.array([10, 23, 45, 67, 89])
+
+series = pd.Series(data)
+series
+
+0    10
+1    23
+2    45
+3    67
+4    89
+dtype: int32
+
+Attributes
+
+print('Data type:', series.dtype, '\n')
+print('Shape:', series.shape, '\n')
+print('Values:', series.values, '\n')
+print('Array:', series.array, '\n')
+
+Data type: Int64 
+
+Shape: (5,) 
+
+Values: <IntegerArray>
+[10, 23, 45, 67, 89]
+Length: 5, dtype: Int64 
+
+Array: <IntegerArray>
+[10, 23, 45, 67, 89]
+Length: 5, dtype: Int64 
+
+Methods
+# to extract to numpy array
+
+to_numpy = series.to_numpy()
+print(to_numpy)
+
+[10 23 45 67 89]
+
+series.head()
+
+0    10
+1    23
+2    45
+3    67
+4    89
+dtype: int32
+
+series.tail()
+
+0    10
+1    23
+2    45
+3    67
+4    89
+dtype: int32
+
+series.info()
+
+<class 'pandas.core.series.Series'>
+RangeIndex: 5 entries, 0 to 4
+Series name: None
+Non-Null Count  Dtype
+--------------  -----
+5 non-null      Int64
+dtypes: Int64(1)
+memory usage: 173.0 bytes
+
+Accessing Data Using Indexing and Slicing
+s = pd.Series([1, 2, 3, 4, 5, 6])
+
+print(s[2])
+
+3
+
+print(s[1:])
+
+print(s[1:4])
+
+1    2
+2    3
+3    4
+4    5
+5    6
+dtype: int64
+
+1    2
+2    3
+3    4
+dtype: int64
+
+print(s[[2, 4]]) #to retrieve multiple rows and columns
+
+2    3
+4    5
+dtype: int64
+
+index = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+
+s = pd.Series([1, 2, 3, 4, 5, 6, 7], index = index)
+
+print(s)
+
+a    1
+b    2
+c    3
+d    4
+e    5
+f    6
+g    7
+dtype: int64
+
+print(s['a'])
+1
+
+#to retrieve multiple elements
+
+print(s[['a', 'c', 'e']])
+
+a    1
+c    3
+e    5
+dtype: int64
+
+print(s['h'])
+
+The 'h' index or label is missing, that's why we're getting that KeyError. Using Series.get() a missing label will return None or a specific default
+
+print(s.get('h'))
+
+None
+
+# OR
+
+print(s.get('h', np.nan))
+
+nan
+
+
+✅ Uses of Pandas Series
+Store One-Dimensional Data:
+
+- It’s great for storing a single column of data like a list of names, numbers, dates, etc.
+
+- Labeling Data with Index: You can assign custom labels (index) to each value. This is helpful for referencing or slicing data by name rather than position.
+
+- Data Manipulation: Easy to apply operations (like filtering, arithmetic, etc.) across all elements.
+Built-in vectorized operations, making it more efficient than regular Python lists.
+
+- Missing Data Handling: Can handle NaN (Not a Number) values gracefully, useful for real-world data.
+
+- Time Series Data: Ideal for indexing and working with time series data.
+
+- Intermediate Step in Data Analysis: Often used when working with or extracting columns from a DataFrame to perform operations before assigning results back.
+
+
+📌 When to Use Pandas Series
+- When you're working with one-dimensional data (like a list or a column from a DataFrame).
+
+- When you need label-based indexing for elements.
+
+- When you want to perform vectorized operations on a 1D dataset.
+
+- When you're preparing or cleaning a single column of a larger dataset.
+
+- When building or analyzing features for machine learning one column at a time.
+
+- When handling time-indexed data (like stock prices or logs).
+
+
+PANDAS DATA STRUCTURE - DATAFRAME
+
+- It is a 2D labeled data structure
+- They are value mutable and size-mutable
+- A tabular structure with hetereogenously-typed columns
+- In pandas a data table is called a DataFrame whereas each column is called a Series
+
+Creating a Pandas DataFrame
+df = pd.DataFrame(data, index=idx, columns=cols)
+
+Data can be many different things, e.g, python dict, list, or tuple
+
+Creating DataFrame using Python Dict, List, or Tuple
+
+# Creating a dataframe using python dictionary
+
+data = {
+   'Name': ['Ann', 'Jane', 'Xavier', 'Justina'],
+   'Age': [40, 46, 58, 67],
+   'Gender': ["Female", "Female", "Male", "Female"]
+
+df = pd.DataFrame(data)
+df
+
+# Creating a df using tuple or lists
+
+# Tuples in a list
+
+data = [
+   ('1/1/2019', 23, 45, 'Rain'),
+   ('2/3/2019', 45, 12, 'Fog'),
+   ('1/4/2019', 11, 34, 'Bright'),
+   ('3/4/2019', 34, 56, 'Storm')
+]
+
+df = pd.DataFrame(data)
+
+df
+
+
+# Creating a df using tuple or lists and indicating column names
+
+# Tuples in a tuple
+
+data = (
+   ('1/1/2019', 23, 45, 'Rain'),
+   ('2/3/2019', 45, 12, 'Fog'),
+   ('1/4/2019', 11, 34, 'Bright'),
+   ('3/4/2019', 34, 56, 'Storm')
+)
+
+df = pd.DataFrame(data, columns=['Date', 'Temperature', 'Windspeed', 'Event'])
+
+df
+
+
+# Creating a df using tuple or lists, indicating indexes and column names
+
+# Lists in a tuple
+
+data = (
+    ['1/1/2019', 23, 45, 'Rain'],
+    ['2/3/2019', 45, 12, 'Fog'],
+    ['1/4/2019', 11, 34, 'Bright'],
+    ['3/4/2019', 34, 56, 'Storm']
+)
+
+df = pd.DataFrame(data, index = ['T1', 'T2', 'T3', 'T4'], columns = ['Date', 'Temperature', 'Windspeed', 'Event'])
+
+df
+
+
+### Creating dataframe using numpy array
+arr = np.random.randint(100, 201, size=(1000, 100))
+arr
+
+array([[178, 147, 177, ..., 189, 117, 188],
+       [120, 122, 175, ..., 189, 135, 164],
+       [132, 152, 185, ..., 116, 191, 113],
+       ...,
+       [164, 106, 175, ..., 127, 122, 167],
+       [165, 150, 139, ..., 196, 192, 190],
+       [112, 160, 170, ..., 125, 139, 126]])
+
+
+# Converting to a dataframe and adding column names to the dataframe
+
+df = pd.DataFrame(arr, columns=['col_'+str(i) for i in range(1, 101)])
+
+df
+
+
+Accessing Attributes/Properties and Methods of DataFrame
+
+# Creating dictionary of series
+data = {
+   'Name': pd.Series(['Neymar', 'Muse', 'Abu', 'Shalom', 'Jacky']),
+   'Age': pd.Series([34, 56, 78, 23, 12]),
+   'Rating': pd.Series([3.4, 5.0, 2.3, 1.0, np.nan])
+}
+
+df = pd.DataFrame(data)
+df
+
+#Attributes
+
+print('Shape of the df: ', df.shape, '\n')
+print('Names of the columns: ', df.columns, '\n')
+print('Data types for each column: '\n', df.dtypes, '\n')
+print('Axes: \n', df.axes, '\n')
+print('Returning data as a numpy array: \n', df.values, '\n')
+
+# for more technical information
+
+df.info()
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 3 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Name    5 non-null      object 
+ 1   Age     5 non-null      int64  
+ 2   Rating  4 non-null      float64
+dtypes: float64(1), int64(1), object(1)
+memory usage: 248.0+ bytes
+
+This methods provides us information about the following:
+- The kind of data structure
+- The number of entries/rows
+- The row label or index ranging from 0 to 4 in this case
+- Number of columns and the count of non-nulls for each column
+- The number of columns with a data type
+- The approximate amount of RAM used to hold the dataframe.
+
+df.head()
+
+df.tail()
+
+
+Working With Tabular Data
+Pandas supports the integration with many file formats or data sources like csv, excel, sql, json, parquet, etc. To get data into pandas, the function with the prefix read_ is used. To export data out of pandas into other forms we use the prefix to_*.
+
+data = {
+        'Name': pd.Series(['Neymar', 'Muse', 'Abu', 'Shalom', 'Jacky']),
+        'Age': pd.Series([34, 56, 78,23,12]),
+        'Rating': pd.Series([3.4, 5.0, 2.3, 1.0, np.nan])
+}
+
+df = pd.DataFrame(data)
+df
+
+# 
+
+
+Accessing Data in a DataFrame Using Indexing and Slicing in Pandas DataFrame
+
+- When selecting subsets of data, [] are use
+- Inside these brackets you can use single column/row label, a list of column/row labels, a slice of labels, a conditional expression, or a colon.
+
+Reading the .csv File - Weather DataSet
+
+df = pd.read_csv('nyc_weather2.csv')
+
+
+Filtering Single vs Multiple Columns from a DataFrame
+
+To select a single column, use square brackets, [] with the column name of the column interest.
+
+max_temp_df = df['maximum temperature']
+max_temp_df
+
+0      42
+1      40
+2      45
+3      36
+4      29
+       ..
+361    60
+362    40
+363    46
+364    40
+365    44
+Name: maximum temperature, Length: 366, dtype: int64
+
+print('Type: ', type(max_temp_df)
+print('Shape: ', max_temp_df.shape)
+
+
+# the above selection returned a series data structure, to return a pandas df
+max_temp_df = df[['maximum temperature']]
+
+max_temp_df
+
+
+Filtering Rows From a DataFrame
+
+There are several ways to do this:
+- Selecting rows using slicing operation
+df[starting_row_index:ending_row_index:step]
+
+- Boolean indexes. To select rows based on a conditional expression, use a condition inside the []
+df[condition]
+
+# Using Way1
+df[1:3]
+
+# Using Way2
+df['maximum temperature']>90
+
+# Applying
+df[df['maximum temperature']>90]
+
+#Still on Way2 Using 'isin'
+df[df['date'].isin(['10-5-2026', '10-4-2016', '10-6-2016'])]
+
+
+Filtering Specific Rows and Columns from a DataFrame
+To subset both rows and columns at a go, just using selection brackets [] will not be sufficient. Here, loc or 'iloc' operators are required in front of the selection brackets.
+
+Syntax:
+df.loc[row_label, col_label] ==> label-based accessing
+df.iloc[row_index, col_label] ==> index-based accessing
+
+#This accesses the 100th row index
+
+df.loc[100]
+date                   10-4-2016
+maximum temperature           50
+minimum temperature           31
+average temperature         40.5
+precipitation               0.00
+snow fall                    0.0
+snow depth                     0
+Name: 100, dtype: object
+
+# Selects the data value for the 100th row index
+df.loc[100, 'date']
+
+'10-4-2016'
+
+df.loc[100, ['date', 'snow fall']]
+
+date         10-4-2016
+snow fall          0.0
+Name: 100, dtype: object
+
+# behaves similar to df.loc[100]
+df.iloc[100]
+
+date                   10-4-2016
+maximum temperature           50
+minimum temperature           31
+average temperature         40.5
+precipitation               0.00
+snow fall                    0.0
+snow depth                     0
+Name: 100, dtype: object
+
+df.iloc[100, [0,5]]
+
+date         10-4-2016
+snow fall          0.0
+Name: 100, dtype: object
+
+# slicing with labels
+df.loc[10:15, 'minimum temperature':'precipitation']
+
+# returns the rows between the 10th to 15th index for the specified columns
+
+# slicing with indexes
+df.iloc[10:15, 2:5]
+
+
+Accessing rows based on a condition
+
+df.loc[condition, col_labels]
+
+Accessing rows based on multiple condtions
+df.loc[(cond1)&(cond2) | (cond3)&(conda4)
+
+# selecting dates with max temp > 90
+
+filtering = df.loc[df['maximum temperature']>90, 'date']
+filtering
+
+type(filtering)
+
+# converting to a numpy array
+filtering.to_numpy()
+
+#to retrieve data (dates) where we had a max tmep > 90 and precipitation = T
+df.loc[(df['maximum temperature']>90) & (df['precipitation']=='T'), 'date']
+
+
+Renaming columns, modifying data types, creating new columns and deleting columns in pandas dataframe
+BEWARE!!!!❌❌
+
+Due to the size of the data (about 541,000 rows), it may take some time to import completely.
+
+df = pd.read_csv('retail_store_sales.csv')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+READING FILES IN PANDAS
+This video teaches you how to read files into Pandas, covering essential steps and techniques for loading data effectively.
+
+Youtube Video Link: https://www.youtube.com/watch?si=B3soQxxx7owiCsqa&v=dUpyC40cF6Q&feature=youtu.be
+
+
+FILTERING COLUMNS AND ROWS IN PANDAS
+You'll learn how to effectively manipulate and organize your data, making it easier to analyze and extract insights.
+
+Youtube Video Link: https://www.youtube.com/watch?si=zMwCI5HBnRAo6V16&v=kB7FV-ijdqE&feature=youtu.be
+
+
+INDEXES IN PANDAS
+In this video, you'll learn how to efficiently navigate and manipulate data in Pandas DataFrame and Series using indexing techniques, a foundational skill for working with data in Python.
+
+Youtube Video Link: https://www.youtube.com/watch?si=_FyIRxtV2D7StOMq&v=mBCG9J1TVTc&feature=youtu.be
+
+
+GROUPBY AND AGGREGATE FUNCTIONS IN PANDAS
+You'll learn how to efficiently group and analyze data, perform  calculations like sum, mean, and count, and unlock the full potential of Pandas for data manipulation and analysis.
+
+Youtube Video Link: https://www.youtube.com/watch?si=ZuMWRPHDZiSlfLLw&v=VRmXto2YA2I&feature=youtu.be
+
+
+MERGING DATAFRAMES IN PANDAS
+A comprehensive overview of essential techniques for combining data in Pandas, including merging, joining, and concatenating DataFrames. This tutorial walks you through everything you need to know to get started with these powerful tools for managing and analyzing data.
+
+Youtube Video Link: https://www.youtube.com/watch?si=ui0kq_GPFRGxN8s-&v=TPivN7tpdwc&feature=youtu.be
+
+
+INTRODUCTION TO DATA VISUALIZATION USING PYTHON
+Data visualization is an essential tool for making complex data easier to understand, communciate, and interpret. By transforming raw data into graphical representations, you can uncover patterns, relationships, trends, and outliers that might not be evident from numbers alone. Visualizations is a huge part of the exploratory data analysis as we would see later.
+
+The Google Colab Link: https://colab.research.google.com/drive/1T3aujxDf8-EF1ZBfFlRrDXeUW7DOsYsd
+
+
+DATA VISUALIZATION WITH MATPLOTLIB IN PYTHON
+Beginner-friendly tutorial on mastering the basics of data visualization with Matplotlib, one of Python's most versatile libraries. It guides you step-by-step through creating plots and subplots, offering practical insights into data analytics and visualization techniques.
+
+Youtube Video Link: https://www.youtube.com/watch?v=gvn8RIG38CM
+
+
+SEABORN TUTORIAL
+This video offers a comprehensive guide to Seaborn, a powerful data visualization library built on top of Matplotlib. Through numerous real-world example, it demonstrates how Seaborn simplifies the creation of attractive and informative visualizations while seamlessly integrating with Pandas and Numpy, making it an essential tool for data analysis and presentation.
+
+Youtube Video Link: https://www.youtube.com/watch?v=6GUZXDef2U0
+
+
+MINI PROJECT 2
+This project consists of four problem solving activities, where you are expected to attempt all the tasks.
+
+SALES DATA ANALYSIS: UNCOVERING TRENDS AND INSIGHTS FROM A REAL-WORLD SALES DATASET
+In today's competitive market, data-driven decision-making is crucial for businesses to optimize their sales strategies. Sales data contains valuable insights that can help organizations understand customer behavior, identify seasonal trends, and improve overall performance. By analyzing a real-world sales dataset, businesses can make informed decisions to boost revenue and enhance customer satisfaction.
+
+The Google Colab Link: https://colab.research.google.com/drive/1-l-PNb60qaVkg7kiwS3r7WNT3zkKzQo2
+
+
+DATA CLEANING METHODS
+i. isnull().sum() - Checks for any Null values in the dataframe
+
+ii. duplicated().sum() - Checks for any duplicate rows
+
+iii. dropna() - Drop any rows with missing values
+
+iv. fillna().mean() - Fill missing data (null) with a value (the average)
+
+v. drop_duplicates() - Drop any duplicate rows
+
+vi. to_numeric() - Convert a series to a numeric type of data
+
+vii. apply() - Apply a custom function to a series of data
+
+viii. .shape - Returns the shape of the data (# of rows/cols)
